@@ -1,0 +1,26 @@
+Guardar listado de usuarios - saveUsers
+Mostrar el total del pago - payments
+Resultado de la puntuación - scores
+Fecha de nacimiento - birthDathe
+Nombre de la mama - name
+Nombre del papa - name
+¿Operación erronea? - request error
+Apellido del cliente - lastname
+Número de asistentes - assistants
+Dirección del estudiante  - address
+Obtener datos basicos del animal -- animalData
+Número de celda del preso - cellNumber
+Kilometros recorridos hasta Roma - kilometersToTheCity
+Cantidad de tiempo programando  - timeSheduled
+El pedido fue entregado - orderDelivered
+Obtener empresas - getAllCompanies
+Eliminar empresa - deleteCompanies
+Actualizar empresa - updateCompanies
+Obtener empresa - getCompanies
+Obtener marcador del partido de futbol - getMachResultByCategory 
+Obtener marcador del partido de basketball - getMachResultByCategory 
+Obtener marcador del partido de futsala - getMachResultByCategory
+Realizar prestamo de vivienda - makeLoanByCategory
+Realizar prestamo de automovil - makeLoanByCategory
+Realizar prestamo de libre inversión - makeLoanByCategory
+
