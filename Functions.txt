@@ -1,16 +1,18 @@
 1. boolean hasCreditCard(User user) {
-    if (user.hasCard)
-        return true; 
-    return false;
+    return user.hasCard;
 }
-
-
 2. Circle makeCircle(double x, double y, double radius);
-
-
-
 3. public boolean checkMax() {
-    if (a < max) 
-        return true;
-    return false;
+    return (a < max);
 }
+checkProfile
+isBeneficiary
+isPreferredUser
+isLoanOrPayment
+isAuthenticated
+isCostumer
+
+
+saveUser
+getAllUser
+deleteUser
