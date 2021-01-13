@@ -1,5 +1,5 @@
 Guardar listado de usuarios - saveUsers
-Mostrar el total del pago - payments
+Mostrar el total del pago - showTotalPayments
 Resultado de la puntuación - scores
 Fecha de nacimiento - birthDathe
 Nombre de la mama - name
@@ -23,4 +23,15 @@ Obtener marcador del partido de futsala - getMachResultByCategory
 Realizar prestamo de vivienda - makeLoanByCategory
 Realizar prestamo de automovil - makeLoanByCategory
 Realizar prestamo de libre inversión - makeLoanByCategory
+
+1.  const yyyymmdstr = moment().format("YYYY/MM/DD");
+    const FORMAT_DATE = moment().format("YYYY/MM/DD");	
+2. 
+getUserInfo(); - getUser();
+getClientData(); - getClient();
+getCustomerRecord(); - getRecord();
+
+3. setTimeout(blastOff, 86400000);
+   setTime(blastOff, 86400000);
+
 
