@@ -28,10 +28,39 @@ Realizar prestamo de libre inversión - makeLoanByCategory
     const FORMAT_DATE = moment().format("YYYY/MM/DD");	
 2. 
 getUserInfo(); - getUser();
-getClientData(); - getClient();
+getClientData(); - getClient(); ERROR
 getCustomerRecord(); - getRecord();
+
+Correcto : getUser();
 
 3. setTimeout(blastOff, 86400000);
    setTime(blastOff, 86400000);
+
+Asignación mental:
+
+const CITYS = ["Austin", "New York", "San Francisco"];
+CITYS.forEach(city => {
+  doStuff();
+  doSomeOtherStuff();
+  // ...
+  // ...
+  // ...
+  // Wait, what is `l` for again?
+  dispatch(city);
+});
+
+
+Contexto innecesario:
+
+const Car =Car.build("Honda","Accord","Blue");
+
+function Car build(String make,String model,String color) {
+  Car car;
+  car.make=make;
+  car.model=model;
+  car.color = color;
+  return car;
+}
+
 
 
