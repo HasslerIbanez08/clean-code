@@ -1,18 +1,19 @@
-1. boolean hasCreditCard(User user) {
-    return user.hasCard;
-}
-2. Circle makeCircle(double x, double y, double radius);
-3. public boolean checkMax() {
-    return (a < max);
-}
-checkProfile
-isBeneficiary
-isPreferredUser
-isLoanOrPayment
-isAuthenticated
-isCostumer
+public class UserValidator {
+
+     private Cryptographer cryptographer;
+	 private static final String VALID_PASSWORD="Valid Password";
 
 
-saveUser
-getAllUser
-deleteUser
+     public boolean checkPassword(String userName, String password) {
+       User user = UserGateway.findByName(userName);
+
+       if (user != User.NULL) {
+         if (VALID_PASSWORD.equals(cryptographer.decrypt(user.getPhraseEncodedByPassword(), password))) {
+           Session.initialize();
+           return true;
+         }
+       }
+       return false;
+     }
+
+   }
