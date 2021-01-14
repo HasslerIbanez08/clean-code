@@ -1,19 +1,27 @@
-public class UserValidator {
+1. Eliminar código duplicado:
 
-     private Cryptographer cryptographer;
-	 private static final String VALID_PASSWORD="Valid Password";
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const data = {
+      developer.calculateExpectedSalary(),
+      developer.getExperience(),
+      developer.getGithubLink()
+    };
+
+    render(data);
+  });
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    const data = {
+      manager.calculateExpectedSalary(),
+      manager.getExperience(),
+      manager.getMBAProjects()
+    };
+
+    render(data);
+  });
+}
 
 
-     public boolean checkPassword(String userName, String password) {
-       User user = UserGateway.findByName(userName);
-
-       if (user != User.NULL) {
-         if (VALID_PASSWORD.equals(cryptographer.decrypt(user.getPhraseEncodedByPassword(), password))) {
-           Session.initialize();
-           return true;
-         }
-       }
-       return false;
-     }
-
-   }
