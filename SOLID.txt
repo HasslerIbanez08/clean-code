@@ -4,6 +4,19 @@
  
  Que hay que realizar la validación del codigo del cupon antes de realizar el pago.
  
+ @RequestMapping("/v1.0/payments")
+ public paymentsController{
+	 private PaymentsService paymentesService;
+	 @PostMapping
+	 public void payCoupon(){
+		 return paymentesService.payCoupon();
+	 }
+	 @GetMapping("/coupon/{code}")
+	 public void validateCouponCode(@PathVariable String code){
+		 return paymentesService.payCoupon(code);
+	 }
+ }
+ 
  public class paymentsService{
 	 void payCoupon(){
 		 
