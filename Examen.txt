@@ -1,0 +1,317 @@
+1.) Limpiar el siguiente código: 
+
+https://github.com/stoyanr/Wordcounter/blob/master/wordcounter/src/main/java/com/stoyanr/util/Arguments.java
+
+private int parseInt(final String value) throws ArgumentsException {
+  return Integer.parseInt(value);
+}
+
+
+
+2.) Limpiar el siguiente código:
+    private static final String THREAD_DEFAULT = "5";
+	private static final String PORT_SERVE_DEFAULT = "8080";
+	private static final String IP_SERVER_DEFAULT = "192.168.0.1";
+	private static final String THREAD_COUNT = "ThreadCount";
+	private static final String SERVER_PORT = "ServerPort";
+	private static final String SERVER_ADDRESS = "ServerAddress";
+
+	private void loadParams() {
+		Properties properties = new Properties();
+		try {
+			InputStream serverProperties = getClass().getResourceAsStream("server.properties");
+			properties.load(serverProperties);
+		} catch (Exception e) {
+			properties.setProperty(SERVER_ADDRESS, IP_SERVER_DEFAULT);
+			properties.setProperty(SERVER_PORT, PORT_SERVE_DEFAULT);
+			properties.setProperty(THREAD_COUNT, THREAD_DEFAULT);
+		}
+	}
+
+
+3.) Cambie el nombre a la siguiente variable, la cuál representa la amortización base de un préstamo, que viene a ser el número de pagos en los que se va a liquidar el prestamo: 12 meses, 24 meses, etc.
+
+private int loansInstallments = 24;
+
+
+4.) Que le sucedió a la siguiente variable y cual fue la causa de su problema:
+
+ List nameArray;
+ 
+ No referencia el tipo de datos, y su nombre no me dice nada para que se va usar la variable.
+
+
+5.) Limpie el siguiente código y comenta los cambios que hiciste en los commits.
+
+	public void processProduct(Product product){
+		long totalCost = 0L;
+
+		if(IGAC.equals(product.getType()) || (SMA.equals(product.getType()) && StringUtils.isBlank(product.getUser()))) ){
+		  product.setRejected(true);
+		  throw new NoLongerAvailableProduct(product);
+		} else {
+		totalCost = processCostProduct(product.getCode(),product.getCost(),product.getAdditionalCharge());
+
+		if(product.getDiscount() != null && product.getDiscount() > 0){
+		totalCost -= product.getDiscount();
+		}
+		}
+
+		product.setSellDate(Calendar.getInstance().getTime());
+		product.setLastUpdateOperator(ONLINE_SHOPPING);
+		ProductRepository productRepository = RepositoryFactory.getInstance(PRODUCT_TYPE);
+		productRepository.buyProduct(product, totalCost);
+
+		sendEmail(product);
+    }
+    public long processCostProduct(int codeProduct, long costProduct, Long additionalChargeProduct) {
+		switch (codeProduct) {
+		case 1:
+			return (long) (costProduct * 0.85);
+		case 2:
+			return costProduct + additionalChargeProduct;
+		default:
+			return costProduct;
+		}
+	}
+	private void sendEmail(Product product) {
+		EmailSender sender = new EmailSender();
+		String addressee = session.getParameter(USER);
+		String subject = FORMAL_MESSAGE + product.getName().repleceAll(s, _);
+		String body = FORMAL_BODY.replaceFirst({product}, product.getName()).replaceFirst({price}, totalCost);
+		sender.send(subject, addressee);
+	}
+
+
+6.) Refactorice el siguiente código enfocandose en el manejo de errores:
+
+class NestedIfElse1 {
+
+
+	    private static final int E_OK = 1;
+	    private static final int E_ERROR = 2;
+	    private Registry registry;
+	    private ConfigKeys configKeys;
+	    
+
+	    public void delete(Page page) throws PageException, RegistryException, ConfigKeyException {
+	        if (deletePage(page) == E_OK) {
+	            if (registry.deleteReference(page.getName()) == E_OK) {
+	                if (configKeys.deleteKey(page.getName()) == E_OK) {
+	                	throw new PageException("page deleted");
+	                } else {
+	                	throw new ConfigKeyException("configKey not deleted");
+	                }
+	            } else {
+	                throw new RegistryException("deleteReference from registry failed");
+	            }
+	        } else {
+	        	throw new PageException("delete failed");
+	            
+	        }
+	    }
+
+	    private int deletePage(Page page) {
+	        return 0;
+	    }
+	}
+
+
+7.) El siguiente código tiene un efecto secundario, identifiquelo y refactorice.
+
+
+
+class User {
+
+	private Session session;
+	private String password;
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean passwordMatched(User user,String password) {
+			return user.getPassword().equals(password);
+	}
+	    
+}
+class Session {
+}
+class SessionService1 {
+
+	public Session login(User user, String password) {
+		if (user.passwordMatched(user,password)) {
+			return user.getSession() != null?user.getSession():new Session();
+		}
+		return null;
+	}
+}
+
+
+8.) Elimine el duplicado del siguiente código usando lambdas en java:
+
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BinaryOperator;
+
+public class Duplication {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Integer product = Math2.sum(numbers);
+        System.out.println(product);
+    }
+}
+
+//with duplication
+class Math1 {
+    public static Integer sum(List<Integer> numbers) {
+        Integer sum = 0;
+        for (Integer n : numbers) {
+            sum += n;
+        }
+        return sum;
+    }
+
+    public static Integer multiply(List<Integer> numbers) {
+        Integer product = 1;
+        for (Integer n : numbers) {
+            product *= n;
+        }
+        return product;
+    }
+}
+
+9.) Nombres con sentido:
+
+Todos los nombres deben ser INTENCIONADOS y DESCRIPTIVOS. Evita abreviaciones, , usar secuencias de números en variables y las palabras REDUNDATES (the-, a-, -OBJECT, -info, -data). Usa nombres que se puedan BUSCAR (evita variables a, e, l… usar i, j, k solo para BUCLES cuyo contexto sea muy acotado).
+
+Es mejor usar un código en la implementación (que será privada y usada menos veces) que la interfaz => IShapeFactory, ShapeFactory —> ShapeFactory, ShapeFactoryImp
+
+Nombres de clases: Evitar sufijos MANAGER o FACADE. No deben ser VERBOS.
+
+Nombres de métodos: Utiliza VERBOS. Usa get y set para métodos de acceso e IS para booleanos. Usa métodos estáticos con nombres con el tipo de argumento en lugar de SOBRECARGAR constructores (new Complex(23.0) –> Complex.FromRealNumber(23.0))
+
+No usar JUEGOS DE PALABRAS, chistes o sutilezas. Intentar usar siempre las MISMAS palabras para lo mismo (get, fetch, retrieve?). No usar una misma palabra para cosas distintas (ADD ES SUM O INSERT).
+
+Usa nombres TÉCNICOS cuando la intención sea técnica (Factory, Visitor, PROCESSOR, …) y nombres de dominio para conceptos de dominio.
+
+Añade CONTEXTO a las variables, por ejemplo, agrupándolas en clases.
+
+Los nombres cuanto más CORTOS mejor, siempre que sean explícitos y claros.
+
+
+
+
+Completa el texto anterior usando las siguientes palabras:
+
+
+
+
+descriptivos
+
+-object
+
+intencionados
+
+prefijos
+
+Manager
+
+is
+
+verbos
+
+bucles
+
+verbos
+
+Facade
+
+redundantes
+
+Processor
+
+buscar
+
+add es sum o insert?
+
+juegos de palabras
+
+contexto
+
+cortos
+
+sobrecargar
+
+mismas
+
+técnicos
+
+10.)
+
+Formato:
+
+
+El tamaño de los ficheros no debería superar las 200 líneas de media, con un límite máximo en 500.
+
+Metáfora del periódico:
+
+Una clase comienza con un título descriptivo y una descripción sin DETALLES que explica el contenido.
+Después vienen los detalles.
+El módulo o programa es una compilación de artículos grandes y pequeños.
+Podemos entender la clase con los métodos superiores sin necesidad de ahondar en los detalles.
+Separación de pensamientos y bloques con LÍNEAS EN BLANCO (como separar en párrafos).
+La distancia vertical entre elementos relacionados debe ser mínima, y como consecuencia, evitar separar elementos relacionados en 2 ficheros distintos (razón por la cual no se deben usar variables protected)
+
+Las variables se deben declarar lo más cerca posible a su uso. Las variables de CLASE (de instancia) en la parte superior, ya que se usan en toda la clase.
+
+La anchura de las líneas de código, entre 80 y 120 caracteres, no deberíamos hacer SCROLL HORIZONTAL para leer código.
+
+Los espacios en blanco se usan para separar CONCEPTOS que queremos remarcar o que están desconexos con sus antecesores y predecesores. Ej: double determinant(double a, double b, double c) { return b*b – 4*a*c; }
+
+Intentar no romper el SANGRADO aunque la longitud de la función o while sea mínima, lo importante es la claridad.
+
+Cualquier EQUIPO debería tener unas REGLAS convenientemente consensuadas. Es importante seguirlas por parte de todos, el estilo y formato debe ser siempre el mismo ya que el código es compartido.
+
+
+
+
+Completa el texto anterior usando las siguientes palabras:
+
+
+
+200
+
+120
+
+detalles
+
+500
+
+líneas en blanco
+
+80
+
+conceptos
+
+clase
+
+scroll horizontal
+
+sangrado
+
+equipo
+
+reglas
