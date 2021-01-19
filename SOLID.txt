@@ -1,0 +1,12 @@
+ Se intenta realizar un pago de un cupon y luego validar el precio se encuentra que el código del cupón es invalido. 
+ 
+ Aplique el SRP e indique que problema hay en la operación anterior y diga como solucionarlo mediante código o arquitectura.
+ 
+ public class paymentsService{
+	 void payCoupon(){
+		 
+	 }
+	 boolean validateCouponPrice(Double priceCoupon){
+		 
+	 }
+ }
