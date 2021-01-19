@@ -2,11 +2,13 @@
  
  Aplique el SRP e indique que problema hay en la operación anterior y diga como solucionarlo mediante código o arquitectura.
  
+ Que hay que realizar la validación del codigo del cupon antes de realizar el pago.
+ 
  public class paymentsService{
 	 void payCoupon(){
 		 
 	 }
-	 boolean validateCouponPrice(Double priceCoupon){
+	 boolean validateCouponCode(Double code){
 		 
 	 }
  }
