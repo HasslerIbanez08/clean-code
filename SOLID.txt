@@ -1,27 +1,22 @@
- Se intenta realizar un pago de un cupon y luego validar el precio se encuentra que el código del cupón es invalido. 
- 
- Aplique el SRP e indique que problema hay en la operación anterior y diga como solucionarlo mediante código o arquitectura.
- 
- Que hay que realizar la validación del codigo del cupon antes de realizar el pago.
- 
- @RequestMapping("/v1.0/payments")
- public paymentsController{
-	 private PaymentsService paymentesService;
-	 @PostMapping
-	 public void payCoupon(){
-		 return paymentesService.payCoupon();
-	 }
-	 @GetMapping("/coupon/{code}")
-	 public void validateCouponCode(@PathVariable String code){
-		 return paymentesService.payCoupon(code);
-	 }
- }
- 
- public class paymentsService{
-	 void payCoupon(){
-		 
-	 }
-	 boolean validateCouponCode(Double code){
-		 
-	 }
- }
+public abstract class Student {
+		public void introduce() {
+			System.out.println("I am a common student");
+		}
+	}
+
+	public class HighSchool extends Student {
+		
+		@Override
+		public void introduce() {
+			System.out.println("I am an high school student");
+		}
+
+	}
+
+	public class UnderGraduate extends Student {
+		@Override
+		public void introduce() {
+			System.out.println("I am a under graduate student");
+		}
+
+	}
