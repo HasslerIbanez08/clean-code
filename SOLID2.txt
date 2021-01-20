@@ -22,7 +22,7 @@ public static void main(String[] args) {
 
 		@Override
 		public Double calculateGrade(Double qualification) {
-			return qualification * percentaje;
+			
 		}
 		
 	}
