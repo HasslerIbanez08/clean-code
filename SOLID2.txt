@@ -11,7 +11,8 @@ public static void main(String[] args) {
 	}
 	public interface Subjects {
 		public void addPercentage(Double percentage);
-		public Double calculateGrade(Double qualification);
+		public List<Double> addNotes(Double notes);
+		public Double calculateGrade();
 	}
 	public class Math implements Subjects{
 		private Double percentaje;
@@ -21,7 +22,11 @@ public static void main(String[] args) {
 		}
 
 		@Override
-		public Double calculateGrade(Double qualification) {
+		public Double calculateGrade() {
+			
+		}
+		@Override
+		public List<Double> addNotes(Double percentage) {
 			
 		}
 		
