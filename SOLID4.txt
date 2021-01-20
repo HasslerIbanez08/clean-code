@@ -1,3 +1,5 @@
+Debes tener en cuenta las acciones de la aves. y cual se va usar y cual no. 
+un ejemplo podria ser.
 --------COdigo nuevvvvvvvvvvo ---------------------------
 interface Animal {
 		public void comer();
