@@ -1,0 +1,116 @@
+ Implementación de una aplicación que prepara automáticamente una taza de café cada mañana para que no tenga que levantarse de la
+ cama antes de que esté lista, puede decidir modelar estas máquinas de café como dos clases con los métodos addCoffee y brewCoffee .
+
+
+Agregar una superclase compartida o una interfaz que se implementa con BasicCoffeeMachine y la clase PremiumCoffeeMachine.
+
+public interface CoffeMachineService {
+	    CoffeeDrink	selectionCoffe(CoffeeSelection coffeeSelection);
+		void addCoffee();
+	}
+	public enum CoffeeSelection {
+		FILTER_COFFEE, ESPRESSO
+	}
+	public abstract class CoffeeDrink{
+		private Map configMap; 
+	    private Map groundCoffee;
+		private Object brewingUnit;
+		private Map<CoffeeSelection, CoffeeDrink> beans;
+	    
+		public CoffeeDrink() {
+			super();
+			this.configMap = new HashMap<>(); 
+	        this.configMap.put(CoffeeSelection.FILTER_COFFEE, 
+	            new Configuration(30, 480)); 
+	        this.configMap.put(CoffeeSelection.ESPRESSO, 
+	            new Configuration(8, 28));
+		} 
+		void coffeeEspresso() {
+			configMap = (Map) configMap.get(CoffeeSelection.ESPRESSO); 
+
+	        // grind the coffee beans 
+	        groundCoffee = this.grinder.grind( 
+	        this.beans.get(CoffeeSelection.ESPRESSO), 
+	            config.getQuantityCoffee()); 
+
+	        // brew an espresso 
+	        return this.brewingUnit.brew(CoffeeSelection.ESPRESSO, 
+	            groundCoffee, config.getQuantityWater()); 
+		}
+		void filterCoffee() { 
+	        Configuration config = configMap.get(CoffeeSelection.FILTER_COFFEE); 
+
+	        // get the coffee 
+	        GroundCoffee groundCoffee = this.groundCoffee.get(
+	            CoffeeSelection.FILTER_COFFEE); 
+
+	        // brew a filter coffee 
+	        return this.brewingUnit.brew(CoffeeSelection.FILTER_COFFEE, 
+	            groundCoffee, config.getQuantityWater()); 
+	    }
+	    
+	}
+	public class BasicCoffee extends CoffeeDrink implements CoffeMachineService{
+
+		@Override
+		public CoffeeDrink selectionCoffe(CoffeeSelection coffeeSelection) {
+			switch (coffeeSelection) {
+			case ESPRESSO: {
+				coffeeEspresso();
+			}case FILTER_COFFEE:{
+				filterCoffee();
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + coffeeSelection);
+			}
+		}
+
+		@Override
+		public void addCoffee() {
+			 GroundCoffee existingCoffee = this.groundCoffee.get(sel); 
+		        if (existingCoffee != null) { 
+		            if (existingCoffee.getName().equals(newCoffee.getName())) { 
+		                existingCoffee.setQuantity(
+		                    existingCoffee.getQuantity() + newCoffee.getQuantity()); 
+		            } else { 
+		                throw new CoffeeException(
+		                    "Only one kind of coffee supported for each CoffeeSelection."); 
+		            } 
+		        } else { 
+		            this.groundCoffee.put(sel, newCoffee); 
+		        } 
+		}
+		
+	}
+	public class PremiumCoffee extends CoffeeDrink implements CoffeMachineService {
+
+		@Override
+		public CoffeeDrink selectionCoffe(CoffeeSelection coffeeSelection) {
+			switch (coffeeSelection) {
+			case ESPRESSO: {
+				coffeeEspresso();
+			}case FILTER_COFFEE:{
+				filterCoffee();
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + coffeeSelection);
+			}
+		}
+
+		@Override
+		public void addCoffee() {
+			 GroundCoffee existingCoffee = this.groundCoffee.get(sel); 
+		        if (existingCoffee != null) { 
+		            if (existingCoffee.getName().equals(newCoffee.getName())) { 
+		                existingCoffee.setQuantity(
+		                    existingCoffee.getQuantity() + newCoffee.getQuantity()); 
+		            } else { 
+		                throw new CoffeeException(
+		                    "Only one kind of coffee supported for each CoffeeSelection."); 
+		            } 
+		        } else { 
+		            this.groundCoffee.put(sel, newCoffee); 
+		        } 
+		}
+		
+	}
