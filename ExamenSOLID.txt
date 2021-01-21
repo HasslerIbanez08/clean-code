@@ -1,0 +1,344 @@
+1. ¿Qué es problemático con este código desde el punto de vista del diseño? ¿Puede relacionarlo con una violación de uno de
+los principios de diseño. Explicar brevemente
+
+- Algunas variables no estan bien definidas, puesto no dicen nada con su nombre como es la de constructor del tigre.
+- el metodo camuflaje se puede poner en la clase abstracta de modo protected por si algún felino tambien usa camuflaje.
+
+public abstract class Feline {
+  private int age;
+  private double weight;
+  private double top_speed;
+
+  public void run(double newSpeed) { ... }
+  private void eat(double portionSize) { ... }
+  // ... -> getXXX() and setXXX() methods here
+}
+
+public class Tiger extends Feline {
+  private String breed;
+
+  public Tiger(int age, double wt, double sp, String br) {
+    this.breed = br;
+    setAge(age);
+    setWeight(wt);
+    setTopSpeed(sp);
+  }
+  private void run(double newSpeed) { ... }
+  public void camouflage() { ... }
+  
+  // ... -> getXXX() and setXXX() methods here
+}
+
+
+
+2. Dé una razón básica de por qué "agregar personas a un proyecto tardío lo hace aún más tarde".
+- Por que significa que el proyecto no fue bien planificado. si fuera sido planificado bien con buenas practicas y demas. todo fuera fluido mas.
+	ya que todo el equipo apuntaria a un mismo lado.
+
+3. Aplique el principio de responsabilidad unica:
+
+
+Metodo que orquesta llamadas a componentes que cada uno tiene otras responsabilidades
+
+	public static void main(String[] args) {
+		TransactionService transactionService = new Transaction();
+		AlertService alertService = new Alert();
+		try {
+			transactionService.processTransaction(new Transaction());
+		} catch (TransactionFraudException transactionFraud) {
+			alertService.sendAler(transactionFraud);
+		}
+	}
+
+	public abstract class TransactionBase {
+		Boolean isFraud(Transaction transaction) {
+			// Procesar si la transacción es un fraude.
+			return false;
+		}
+	}
+
+	public interface TransactionService {
+		void processTransaction(Transaction transaction) throws TransactionFraudException;
+	}
+
+	public class Transaction extends TransactionBase implements TransactionService {
+
+		private static final String TRANSACTION_MESSAGE_FRAUD = "La transacción es un fraude";
+
+		@Override
+		public void processTransaction(Transaction transaction) throws TransactionFraudException {
+			if (isFraud(transaction)) {
+				throw new TransactionFraudException(TRANSACTION_MESSAGE_FRAUD);
+			}
+
+		}
+
+	}
+
+	public interface AlertService {
+		void sendAler(Exception exception);
+	}
+
+	public class Alert implements AlertService {
+
+		@Override
+		public void sendAler(Exception exception) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
+	public class TransactionFraudException extends Exception {
+
+		public TransactionFraudException(String transactionMessageFraud) {
+			// TODO Auto-generated constructor stub
+		}
+
+	}
+
+
+4. Aplique el principio de sustitución de liskov para la imagen
+
+5.   Nuestra aplicación bancaria admite dos tipos de cuentas: "corriente" y "ahorros".
+
+
+public abstract class Account {
+    protected abstract void deposit(BigDecimal amount);
+
+    /**
+     * Reduces the balance of the account by the specified amount
+     * provided given amount > 0 and account meets minimum available
+     * balance criteria.
+     *
+     * @param amount
+     */
+    protected abstract void withdraw(BigDecimal amount);
+}
+
+
+
+public class BankingAppWithdrawalService {
+    private Account account;
+
+    public BankingAppWithdrawalService(Account account) {
+        this.account = account;
+    }
+
+    public void withdraw(BigDecimal amount) {
+        account.withdraw(amount);
+    }
+}
+
+
+El banco ahora quiere ofrecer a sus clientes una cuenta de depósito a plazo fijo con altos intereses.
+
+Para apoyar esto, introduzcamos una nueva clase FixedTermDepositAccount . Una cuenta de depósito a plazo fijo en el mundo real "es un" tipo de cuenta. Esto implica herencia en nuestro diseño orientado a objetos.
+
+Entonces, hagamos FixedTermDepositAccount una subclase de Account:
+
+public class FixedTermDepositAccount extends Account {
+    // Overridden methods...
+}
+
+
+Hasta aquí todo bien. Sin embargo, el banco no quiere permitir retiros de cuentas de depósito a plazo fijo.
+
+Esto significa que la nueva clase FixedTermDepositAccount no puede proporcionar de manera significativa el método de retiro que define Account . Una solución para esto es hacer que FixedTermDepositAccount arroje una UnsupportedOperationException en el método que no puede cumplir:
+public class FixedTermDepositAccount extends Account {
+    @Override
+    protected void deposit(BigDecimal amount) {
+        // Deposit into this account
+    }
+
+    @Override
+    protected void withdraw(BigDecimal amount) {
+        throw new UnsupportedOperationException("Withdrawals are not supported by FixedTermDepositAccount!!");
+    }
+}
+
+
+
+
+Test:
+
+
+Account myFixedTermDepositAccount = new FixedTermDepositAccount();
+myFixedTermDepositAccount.deposit(new BigDecimal(1000.00));
+
+BankingAppWithdrawalService withdrawalService = new BankingAppWithdrawalService(myFixedTermDepositAccount);
+withdrawalService.withdraw(new BigDecimal(100.00));
+
+
+Output: Withdrawals are not supported by FixedTermDepositAccount!!
+
+
+/****/
+
+¿Qué salió mal?
+Resuelva este problema con el princpio de sustitución de Liskov
+
+- Se debe crear una clase que no tenga la opcion de retiro
+
+public abstract class AccountNowithdrawal {
+	protected abstract void deposit(BigDecimal amount);
+}
+
+- Y extender la clase de esta nueva clase
+public class FixedTermDepositAccount extends AccountNowithdrawal {
+	@Override
+	protected void deposit(BigDecimal amount) {
+	// Deposit into this account
+	}  
+}
+
+6.  Imagina que mi programa tuviera una clase Player que implementa un método makeMove ():
+
+
+
+public class Player {
+
+    private final String mark;
+
+    public Player(String mark) {
+        this.mark = mark;
+    }
+
+    public String makeMove(Ui ui, Grid grid) {
+        ui.promptForPosition();           // prompts user to input
+                                             a position on grid
+        String positionChosen = ui.chooseValidPosition(grid);
+        return positionChosen;   // returns a valid position on grid
+                                    that user has entered as string
+    }
+}
+
+Entonces tendría una clase GameFlow que implementa un método runGame y crea dos instancias de Player:
+
+public class GameFlow {
+ 
+  private Player playerOne;
+  private Player playerTwo;
+  public GameFlow() {
+     this.playerOne = new Player(String mark);
+     this.playerTwo = new Player(String otherMark)     
+     // more classes instantiations
+  }
+  // some code
+public void runGame() {
+      Player currentPlayer = playerOne;
+      while (!isGameEnded()) {
+          String positionChosen = currentPlayer.makeMove(ui, grid);
+          grid.addMark(currentMark, positionChosen);
+          currentPlayer = switchPlayer();
+      }
+  }
+  
+  // more code
+}
+
+Una semana después, mis mentores me piden que agregue una nueva función a mi TTT: el usuario debería poder elegir jugar contra otro jugador humano o contra la computadora. Podría cambiar mi clase Player y agregar un método adicional makeRandomMove (la computadora hace un movimiento válido aleatorio: no tiene que ser imbatible por ahora):
+
+public class Player {
+    private final String mark;
+
+    public Player(String mark) {
+        this.mark = mark;
+    }
+
+    public String makeMove(Ui ui, Grid grid) {
+       // code for human player
+    }
+    public String makeRandomMove(Grid grid) {
+       String randomPosition = grid.possibleMoves.get(new 
+         Random().nextInt(grid.possibleMoves.size()));
+       return randomPosition;  // returns a random position on grid
+                                   as a string    
+    }
+}
+
+Mi método runGame en la clase GameFlow también debería cambiarse a algo como esto:
+
+public class GameFlow {
+  private Player playerOne;
+  private Player playerTwo;
+  public GameFlow() {
+     this.playerOne = new Player(String mark);
+     this.playerTwo = new Player(String otherMark)     
+     // more classes instantiations
+  }
+  // some code
+public void runGame() {
+      Player currentPlayer = playerOne;
+      while (!isGameEnded()) {
+         if (currentPlayerType is "human") {     // pseudo-code
+            String position = currentPlayer.makeMove(ui, grid);
+         } else if (currentPlayerType is "computer") { //pseudo-code
+             String position = currentPlayer.makeRandomMove(grid);
+         }
+         grid.addMark(currentMark, positionChosen);
+         currentPlayer = switchPlayer();
+        }
+    }
+  
+   // more code
+}
+
+
+Siguiente requisito de mis mentores: ¡el usuario también puede elegir jugar contra una computadora imbatible! ARGH !! Necesito volver a cambiar las clases Player y GameFlow ...
+
+
+
+Solucionar con el principio de abierto y cerrado.
+
+
+7. Transforme el diagrama con el principio de segregación de interfaces. (Imagen SLACK)
+
+
+8. Aplique el principio de segregación de interfaces.
+
+
+	public interface BookAction {
+	    void seeReviews();
+	}
+	public interface BookAudio extends BookAction{
+		void listenSample();
+	}
+	public interface Book extends BookAction{
+		void searchSecondhand();
+	}
+	class HardcoverUI implements Book {
+
+		@Override
+		public void seeReviews() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void searchSecondhand() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	}
+	class AudiobookUI implements BookAudio {
+
+		@Override
+		public void seeReviews() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void listenSample() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	}
+
+9.  Liste las ideas de Martin Fowler https://martinfowler.com/articles/dipInTheWild.html en el apartado: You mean Dependency Inversion, Right?
+
+
+
