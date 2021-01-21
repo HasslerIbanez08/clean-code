@@ -340,5 +340,5 @@ Solucionar con el principio de abierto y cerrado.
 
 9.  Liste las ideas de Martin Fowler https://martinfowler.com/articles/dipInTheWild.html en el apartado: You mean Dependency Inversion, Right?
 
-
+	- La inyección de dependencia se trata de cómo un objeto sabe acerca de otro objeto dependiente
 
