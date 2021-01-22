@@ -18,6 +18,8 @@ dependencies {
     testCompile 'com.codeborne:selenide:5.17.4'
     compile 'org.hamcrest:hamcrest:2.2'
     compile 'org.mockito:mockito-core:3.6.28'
+    compile 'junit:junit:4.5'
+    compile 'org.testng:testng:6.10'
 }
 
 test {
