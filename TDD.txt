@@ -1,7 +1,7 @@
 Calculadora al recibir dos numeros debe poder restar, sumar o multiplicar o dividir.
 
 1 TEST
-Metodo seleccionar operacion
+Metodo seleccionarOperacionMatematicas(String tipoOperacion) -> Return Contantes con tipo operacion.
 Ingresando como parametro String el simbolo de la operacion("+","-","*","%")
 Devolviendo alguna de estas constantes
 1- SUMA
@@ -10,16 +10,14 @@ Devolviendo alguna de estas constantes
 4- DIVIDIR.
 
 2 TEST
-Metodo seleccionar operacion
+Metodo seleccionarTipoOperacion(String tipoOperacion) -> Return Exception.
 El ingresar una erronea debe lanzar una excepcion. 
 
 3 TEST 
-Metodo Operaciones, 
-Recibe 3 parametros la seleccion (SUMA,RESTA,MULTIPLICAR,DIVIDIR, numero1,numero2)
+Metodo procesarOperacionMatematicas(String tipoOperacion,Double numero1,Double numero2) -> Return resultado de la operacion;
 al ingresar DOS numeros debe dar el resultado de la operacion.
 
 4 TEST 
-Metodo Operaciones, 
-Recibe 3 parametros la seleccion (SUMA,RESTA,MULTIPLICAR,DIVIDIR, numero1,numero2)
+Metodo procesarOperacionMatematicas(String tipoOperacion,Double numero1,Double numero2) -> Return Exception;
 Al recibir alguna operacion que no existe debe lanzar una excepcion
 
