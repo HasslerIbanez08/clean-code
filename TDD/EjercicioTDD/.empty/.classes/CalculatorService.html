@@ -1,0 +1,122 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CalculatorService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CalculatorService (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CalculatorService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    64,3%
+  </span>
+  <span class="absValue">
+    (9/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><b class="fc"><i>1</i>&nbsp;public class CalculatorService {</b>
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;    public static final String SUMA = &quot;SUMA&quot;;
+<i>4</i>&nbsp;    public static final String RESTA = &quot;RESTA&quot;;
+<i>5</i>&nbsp;    public static final String MULTIPLICACION = &quot;MULTIPLICACION&quot;;
+<i>6</i>&nbsp;    public static final String DIVISION = &quot;DIVISION&quot;;
+<b class="fc"><i>7</i>&nbsp;    public static Calculator calculator = new Calculator();</b>
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    public   String selectOperation(String operation) throws Exception {
+<b class="fc"><i>10</i>&nbsp;        switch (operation){</b>
+<i>11</i>&nbsp;            case &quot;+&quot;:
+<b class="nc"><i>12</i>&nbsp;                return SUMA;</b>
+<i>13</i>&nbsp;            case &quot;-&quot;:
+<b class="nc"><i>14</i>&nbsp;                return RESTA;</b>
+<i>15</i>&nbsp;            case &quot;*&quot;:
+<b class="nc"><i>16</i>&nbsp;                return MULTIPLICACION;</b>
+<i>17</i>&nbsp;            case &quot;/&quot;:
+<b class="nc"><i>18</i>&nbsp;                return DIVISION;</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;            default:
+<b class="fc"><i>21</i>&nbsp;              throw new Exception(&quot;Operacion no encontrada&quot;);</b>
+<i>22</i>&nbsp;        }
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;    public   int ejecutarOperation(String operation,int x, int y) throws Exception {
+<b class="fc"><i>25</i>&nbsp;        switch (operation){</b>
+<i>26</i>&nbsp;            case SUMA:
+<b class="fc"><i>27</i>&nbsp;                return calculator.add(x,y);</b>
+<i>28</i>&nbsp;            case RESTA:
+<b class="fc"><i>29</i>&nbsp;                return calculator.subtraction(x,y);</b>
+<i>30</i>&nbsp;            case MULTIPLICACION:
+<b class="fc"><i>31</i>&nbsp;                return calculator.multiply(x,y);</b>
+<i>32</i>&nbsp;            case DIVISION:
+<b class="fc"><i>33</i>&nbsp;                return calculator.divide(x,y);</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;            default:
+<b class="nc"><i>36</i>&nbsp;                throw new Exception(&quot;Operacion no encontrada&quot;);</b>
+<i>37</i>&nbsp;        }
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-26 15:02</div>
+</div>
+</body>
+</html>
