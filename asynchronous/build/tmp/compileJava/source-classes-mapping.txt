@@ -1,4 +1,6 @@
 MathematicsOperations.java
  MathematicsOperations
+Palindromes.java
+ Palindromes
 MathematicsMain.java
  MathematicsMain
