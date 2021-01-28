@@ -1,6 +1,28 @@
+Customer.java
+ Customer
 MathematicsOperations.java
  MathematicsOperations
+MyThread.java
+ MyThread
+Main.java
+ Main
+OperationInterface.java
+ OperationInterface
+StoreCashierThread.java
+ StoreCashierThread
+StoreCashier.java
+ StoreCashier
 Palindromes.java
  Palindromes
-MathematicsMain.java
- MathematicsMain
+MainThread.java
+ MainThread
+FunctionalInterfaces.java
+ FunctionalInterfaces
+MainRunnable.java
+ MainRunnable
+FunctionalInterfacesAutenticacion.java
+ FunctionalInterfacesAutenticacion
+AutenticationRunneable.java
+ AutenticationRunneable
+Autentication.java
+ Autentication
