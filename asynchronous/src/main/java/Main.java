@@ -32,7 +32,17 @@ public class Main {
 //        long initialTime = System.currentTimeMillis();
 //        storeCashier.buy(customer,initialTime);
 //        storeCashier1.buy(customer2,initialTime);
+        
     }
+    /*
+    * Prioridad de los hilos
+    * - Rango de 1 a 10 odonde el rango 10 es el mas importante
+    * contsnates para darle prioridad a los hilos
+    * MIN_PRIORITY = 1
+    * NOR_PRIORITY = 5
+    * MAX_PRIORITY = 10
+    *
+    * */
 
 //    private static void Thread() {
 //        Thread [] myThreads = new Thread[20];
