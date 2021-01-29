@@ -1,5 +1,7 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 
@@ -10,13 +12,40 @@ public class ExecutorServiceExample {
         //singleThread();
         //cacheThreadPool();
         autenticar("hassler","123456");
+//        basicscheduleThreadPool();
+//        fixedRateScheduleThreadPool();
+//        fixeDelayScheduleThreadPool();
     }
     private static  void autenticar(String user,String password){
-        ExecutorService executors = Executors.newCachedThreadPool();
         Autentication autentication = new Autentication();
 
-        executors.execute(()->autentication.isAutenticate(password,user));
-        executors.shutdown();
+        ScheduledExecutorService executors = Executors.newScheduledThreadPool(10);
+        IntStream.range(0,10).forEach(
+                i -> executors.scheduleAtFixedRate(()->autentication.isAutenticate(password,user),20,10, TimeUnit.SECONDS)
+        );
+//        executors.shutdown();
+    }
+    //Grupo de subprocesos programados.
+    private static void basicscheduleThreadPool(){
+        ScheduledExecutorService executors = Executors.newScheduledThreadPool(10);
+        IntStream.range(0,10).forEach(
+                i -> executors.schedule(ExecutorServiceExample::showNameThread,20, TimeUnit.SECONDS)
+        );
+        System.out.println("The thread finished");
+//        executors.shutdown();
+    }
+    private static void fixedRateScheduleThreadPool(){
+        ScheduledExecutorService executors = Executors.newScheduledThreadPool(10);
+        IntStream.range(0,10).forEach(
+                i -> executors.scheduleAtFixedRate(ExecutorServiceExample::showNameThread,20,10, TimeUnit.SECONDS)
+        );
+//        executors.shutdown();
+    }
+    private static void fixeDelayScheduleThreadPool(){
+        ScheduledExecutorService executors = Executors.newScheduledThreadPool(10);
+        IntStream.range(0,10).forEach(
+                i -> executors.scheduleWithFixedDelay(ExecutorServiceExample::showNameThread,20,10, TimeUnit.SECONDS)
+        );
     }
     //CacheThreadPoolExecutor Ejecutor de grupo de subprocesos en cache
     private static void cacheThreadPool(){
