@@ -1,8 +1,9 @@
 
+import com.ea.async.Async;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
-import org.cactoos.func.Async;
+;
 
 import java.util.concurrent.*;
 
@@ -55,15 +56,15 @@ public class Main {
 //        }
 //    }
 
-//    private static void Async(MathematicsOperations mathematicsOperations, int numero) throws InterruptedException, ExecutionException {
-//        CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(()-> mathematicsOperations.factorial(numero));
-//        long result = Async.await(completableFuture);
-//        System.out.println("El resultado es : "+result);
-//        Async<Integer,Long> async = new Async<Integer,Long>(input -> mathematicsOperations.factorial(input));
-//        Future<Long> asyncFuture = async.apply(numero);
-//        long result =asyncFuture.get();
-//        System.out.println("The result is : "+result);
-//    }
+    private static void Async(MathematicsOperations mathematicsOperations, int numero) throws InterruptedException, ExecutionException {
+        CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(()-> mathematicsOperations.factorial(numero));
+        long result = Async.await(completableFuture);
+        System.out.println("El resultado es : "+result);
+        Async<Long> async = new Async<Integer>(input -> mathematicsOperations.factorial(input));
+        Future<Long> asyncFuture = async.apply(numero);
+        long result =asyncFuture.get();
+        System.out.println("The result is : "+result);
+    }
 
     private static void guava(MathematicsOperations mathematicsOperations, int numero) throws InterruptedException, ExecutionException {
         ExecutorService threadPool = Executors.newCachedThreadPool();
