@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f667b41-589a-4095-b2c3-f04885502ce8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/modules/AsynchronousProgrammingLibraries.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/src/main/java/authenticatecase/Authenticate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/src/main/java/authenticatecase/AuthenticateService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/src/main/java/calculatorcase/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nueva carpeta/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AsynchronousProgrammingLibraries/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
