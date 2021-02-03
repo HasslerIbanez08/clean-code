@@ -10,3 +10,39 @@ MainCompletableFuture.java
  MainCompletableFuture
 MainCompletableFutureExercise.java
  MainCompletableFutureExercise
+Employee.java
+ Employee
+StreamExample.java
+ StreamExample
+StreamMain.java
+ StreamMain
+MainTravels.java
+ MainTravels
+Travels.java
+ Travels
+Person.java
+ Person
+MainStreamParallels.java
+ MainStreamParallels
+observer/Subject.java
+ observer.Subject
+observer/Observer.java
+ observer.Observer
+observer/WordObserver.java
+ observer.WordObserver
+observer/LengthObserver.java
+ observer.LengthObserver
+observer/exercise/CalculatorNumber.java
+ observer.exercise.CalculatorNumber
+observer/MainObserver.java
+ observer.MainObserver
+observer/CaseObserver.java
+ observer.CaseObserver
+observer/exercise/SubjectCalculator.java
+ observer.exercise.SubjectCalculator
+observer/exercise/ObserverCalculator.java
+ observer.exercise.ObserverCalculator
+observer/exercise/MainCalculatorObserve.java
+ observer.exercise.MainCalculatorObserve
+observer/exercise/CalculatorObserve.java
+ observer.exercise.CalculatorObserve
