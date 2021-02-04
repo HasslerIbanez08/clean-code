@@ -68,3 +68,13 @@ reactivestream/example/CalculatorSubscriber.java
  reactivestream.example.CalculatorSubscriber
 reactivestream/example/MainExercise.java
  reactivestream.example.MainExercise
+iterator/MainMultiply.java
+ iterator.MainMultiply
+iterator/MultiplyList.java
+ iterator.MultiplyList
+ iterator.MultiplyList$1
+iterator/MainExercise.java
+ iterator.MainExercise
+iterator/ExerciseIterator.java
+ iterator.ExerciseIterator
+ iterator.ExerciseIterator$1
