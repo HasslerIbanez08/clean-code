@@ -30,8 +30,6 @@ public class CalculatorObserve extends ObserverCalculator {
     }
     private int divide(int x, int y)
     {
-        int solution = 0;
-        solution = x / y;
-        return solution;
+        return x/y;
     }
 }
