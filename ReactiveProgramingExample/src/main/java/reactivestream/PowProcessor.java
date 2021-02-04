@@ -9,13 +9,14 @@ public class PowProcessor extends SubmissionPublisher<Integer> implements Flow.P
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription=subscription;
-        subscription.request(1);
+        subscription.request(2);
     }
 
     @Override
     public void onNext(Integer item) {
         submit(item * item);
-        subscription.request(1);
+        // Envio de la suscripcion con los datos necesarios para ejecutar la tarea
+        subscription.request(2);
     }
 
     @Override

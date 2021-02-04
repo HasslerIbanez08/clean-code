@@ -6,8 +6,8 @@ StreamExample.java
  StreamExample
 SquareFutureExample.java
  SquareFutureExample
-reactivestream/PrintSubscriber.java
- reactivestream.PrintSubscriber
+observer/exercise/CalculatorNumber.java
+ observer.exercise.CalculatorNumber
 reactivestream/Sleeper.java
  reactivestream.Sleeper
 observer/CaseObserver.java
@@ -54,9 +54,17 @@ StreamMain.java
  StreamMain
 observer/exercise/WeatherObservable.java
  observer.exercise.WeatherObservable
-observer/exercise/CalculatorNumber.java
- observer.exercise.CalculatorNumber
 reactivestream/PowProcessor.java
  reactivestream.PowProcessor
 reactivestream/Main.java
  reactivestream.Main
+reactivestream/PrintSubscriber.java
+ reactivestream.PrintSubscriber
+reactivestream/example/Calculator.java
+ reactivestream.example.Calculator
+reactivestream/example/CalculatorProcessor.java
+ reactivestream.example.CalculatorProcessor
+reactivestream/example/CalculatorSubscriber.java
+ reactivestream.example.CalculatorSubscriber
+reactivestream/example/MainExercise.java
+ reactivestream.example.MainExercise
