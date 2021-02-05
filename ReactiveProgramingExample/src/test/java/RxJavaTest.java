@@ -110,11 +110,11 @@ public class RxJavaTest {
     public void intervalExerciseChat() throws InterruptedException {
         ConnectableObservable<Long> connectableObservable = Observable.interval(1,TimeUnit.SECONDS).publish();
         System.out.println("---------------------Chat--------------------");
-        connectableObservable.subscribe((i)-> {System.out.println(i==0?"User 1 :Me tienes el dinero? ":(i==1||i==2||i==3)?"User 1 : Contesta":"User 1 : oh voy personalmente a tu casa?");});
+        connectableObservable.subscribe((i)-> {System.out.println(i==0?"User 1 :Me tienes el dinero? ":((i>=1&&i<=3 || i==5))?"User 1 : Contesta!":"User 1 : oh voy personalmente a tu casa?");});
         connectableObservable.connect();
         Thread.sleep(4000);
-        connectableObservable.subscribe((i) -> System.out.println(i==0?"User 2 : no voy a pagar nada y haz lo que quieras ":"si quieres aca te espero"));
-        Thread.sleep(1000);
+        connectableObservable.subscribe((i) -> System.out.println(i==5?"User 2 : que no te voy a pagar nada y haz lo que quieras. ":"User 2 : si quieres aca te espero"+ i));
+        Thread.sleep(2000);
 
     }
 }
