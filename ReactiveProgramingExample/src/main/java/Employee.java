@@ -1,10 +1,17 @@
 public class Employee {
     private  String name;
-    private Double salary;
+    private double salary;
+    private int age;
 
-    public Employee(String name, Double salary) {
+    public Employee(String name, double salary) {
         this.name = name;
         this.salary = salary;
+    }
+
+    public Employee(String name, double salary, int age) {
+        this.name = name;
+        this.salary = salary;
+        this.age = age;
     }
 
     public String getName() {
@@ -15,11 +22,20 @@ public class Employee {
         this.name = name;
     }
 
-    public Double getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                '}';
     }
 }

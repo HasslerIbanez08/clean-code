@@ -1,9 +1,14 @@
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observables.ConnectableObservable;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -106,15 +111,102 @@ public class RxJavaTest {
         Thread.sleep(5000);
 
     }
+
     @Test
     public void intervalExerciseChat() throws InterruptedException {
-        ConnectableObservable<Long> connectableObservable = Observable.interval(1,TimeUnit.SECONDS).publish();
+        ConnectableObservable<Long> connectableObservable = Observable.interval(1, TimeUnit.SECONDS).publish();
         System.out.println("---------------------Chat--------------------");
-        connectableObservable.subscribe((i)-> {System.out.println(i==0?"User 1 :Me tienes el dinero? ":((i>=1&&i<=3 || i==5))?"User 1 : Contesta!":"User 1 : oh voy personalmente a tu casa?");});
+        connectableObservable.subscribe((i) -> {
+            System.out.println(i == 0 ? "User 1 :Me tienes el dinero? " : ((i >= 1 && i <= 3 || i == 5)) ? "User 1 : Contesta!" : "User 1 : oh voy personalmente a tu casa?");
+        });
         connectableObservable.connect();
         Thread.sleep(4000);
-        connectableObservable.subscribe((i) -> System.out.println(i==5?"User 2 : que no te voy a pagar nada y haz lo que quieras. ":"User 2 : si quieres aca te espero"+ i));
+        connectableObservable.subscribe((i) -> System.out.println(i == 5 ? "User 2 : que no te voy a pagar nada y haz lo que quieras. " : "User 2 : si quieres aca te espero" + i));
         Thread.sleep(2000);
 
     }
-}
+
+    private static int start = 1;
+    private static int count = 5;
+
+    @Test
+    public void defearTest() {
+        Observable<Integer> observable = Observable.defer(() -> Observable.range(start, count));
+        observable.subscribe((i) -> System.out.println("Observe one :" + i));
+
+
+        count = 10;
+        observable.subscribe((i) -> System.out.println("Observe two :" + i));
+
+        count = 20;
+        observable.subscribe((i) -> System.out.println("Observe three :" + i));
+    }
+
+    @Test
+    public void disposableTest() {
+        Observable<Long> observable = Observable.interval(1, TimeUnit.SECONDS);
+        Disposable disposable = observable.subscribe((data) -> System.out.println("Received " + data));
+        sleep(5000);
+        disposable.dispose();
+        sleep(5000);
+    }
+
+    @Test
+    public void distinctTest() {
+        Observable<String> observable = Observable.just("alfa", "beta", "gama", "delta", "epsilon");
+        observable
+                .distinct(String::length)
+                .subscribe((i) -> System.out.println("Received :" + i));
+    }
+
+    @Test
+    public void sorteTest() {
+        Observable.just(2, 5, 9, 6, 7, 8, 1, 0)
+                .sorted(Comparator.reverseOrder()).subscribe(System.out::println);
+        Observable<String> observable = Observable.just("alfaaaaa", "beta", "gama", "delta", "epsilon");
+        observable.sorted(Comparator.reverseOrder()).subscribe(System.out::println);
+        observable.sorted((x,y)-> Integer.compare(x.length(),y.length()))
+                .subscribe(System.out::println);
+    }
+    @Test
+    public void containsTest(){
+        Observable.range(0,10000)
+                .contains(9563)
+                .subscribe((i)-> System.out.println("Received :"+i));
+    }
+
+    public static void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+        }
+    }
+    int cantidadEmployees = 0;
+    @Test
+    public  void  testEmployee(){
+        List<Employee> employees = getEmploye();
+
+        Observable<Employee> employeeObservable = Observable.defer(()->Observable.fromIterable(employees));
+
+        employees.add(new Employee("Employe: "+employees.size() + 1,10*employees.size() + 1,10*employees.size() + 1));
+        employeeObservable.subscribe(employee -> cantidadEmployees++);
+
+        assertEquals(8,cantidadEmployees);
+        employeeObservable.distinct()
+                .distinct(employee -> employee.getSalary()>30.0)
+                .subscribe((i)-> System.out.println(i));
+
+    }
+    private List<Employee> getEmploye(){
+        List<Employee> employees = new ArrayList<>();
+        for (int i=0; i<7;i++
+             ) {
+            int number = i==0?7:i;
+            employees.add(new Employee("Employe: "+number,10*number,10*number));
+        }
+
+        return employees ;
+
+    }
+    }
