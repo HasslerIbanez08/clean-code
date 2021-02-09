@@ -1,8 +1,0 @@
-authenticatecase/AuthenticateService.java
- authenticatecase.AuthenticateService
-authenticatecase/Authenticate.java
- authenticatecase.Authenticate
-Main.java
- Main
-calculatorcase/Calculator.java
- calculatorcase.Calculator

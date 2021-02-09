@@ -1,6 +1,0 @@
-AnotationsTest.java
- AnotationsTest
-AssertionsTest.java
- AssertionsTest
-Assumptions.java
- Assumptions
