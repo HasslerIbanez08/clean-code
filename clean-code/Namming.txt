@@ -1,0 +1,66 @@
+Guardar listado de usuarios - saveUsers
+Mostrar el total del pago - showTotalPayments
+Resultado de la puntuación - scores
+Fecha de nacimiento - birthDathe
+Nombre de la mama - name
+Nombre del papa - name
+¿Operación erronea? - request error
+Apellido del cliente - lastname
+Número de asistentes - assistants
+Dirección del estudiante  - address
+Obtener datos basicos del animal -- animalData
+Número de celda del preso - cellNumber
+Kilometros recorridos hasta Roma - kilometersToTheCity
+Cantidad de tiempo programando  - timeSheduled
+El pedido fue entregado - orderDelivered
+Obtener empresas - getAllCompanies
+Eliminar empresa - deleteCompanies
+Actualizar empresa - updateCompanies
+Obtener empresa - getCompanies
+Obtener marcador del partido de futbol - getMachResultByCategory 
+Obtener marcador del partido de basketball - getMachResultByCategory 
+Obtener marcador del partido de futsala - getMachResultByCategory
+Realizar prestamo de vivienda - makeLoanByCategory
+Realizar prestamo de automovil - makeLoanByCategory
+Realizar prestamo de libre inversión - makeLoanByCategory
+
+1.  const yyyymmdstr = moment().format("YYYY/MM/DD");
+    const FORMAT_DATE = moment().format("YYYY/MM/DD");	
+2. 
+getUserInfo(); - getUser();
+getClientData(); - getClient(); ERROR
+getCustomerRecord(); - getRecord();
+
+Correcto : getUser();
+
+3. setTimeout(blastOff, 86400000);
+   setTime(blastOff, 86400000);
+
+Asignación mental:
+
+const CITYS = ["Austin", "New York", "San Francisco"];
+CITYS.forEach(city => {
+  doStuff();
+  doSomeOtherStuff();
+  // ...
+  // ...
+  // ...
+  // Wait, what is `l` for again?
+  dispatch(city);
+});
+
+
+Contexto innecesario:
+
+const Car =Car.build("Honda","Accord","Blue");
+
+function Car build(String make,String model,String color) {
+  Car car;
+  car.make=make;
+  car.model=model;
+  car.color = color;
+  return car;
+}
+
+
+

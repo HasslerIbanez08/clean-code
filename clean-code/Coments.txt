@@ -1,0 +1,26 @@
+1. Convierta el siguiente código para no usar el comentario.
+
+// Check to see if the employee is eligible for full benefits
+
+   if ((employee.flags & HOURLY_FLAG) &&
+
+       (employee.age > 65))
+
+
+2. Convierta el siguiente código para no usar el comentario.
+
+
+// Returns an instance of the Responder bei  
+protected abstract Responder responderInstance(){
+	new Responder();
+}
+
+
+3. ¿Que técnica podríamos aplicar para eliminar el siguiente comentario?
+
+ // format matched kk:mm:ss EEE, MMM dd, yyyy
+
+   Pattern timeMatcher = Pattern.compile(
+
+     “\\d*:\\d*:\\d* \\w*, \\w* \\d*, \\d*”);
+

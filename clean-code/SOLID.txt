@@ -1,0 +1,22 @@
+public abstract class Student {
+		public void introduce() {
+			System.out.println("I am a common student");
+		}
+	}
+
+	public class HighSchool extends Student {
+		
+		@Override
+		public void introduce() {
+			System.out.println("I am an high school student");
+		}
+
+	}
+
+	public class UnderGraduate extends Student {
+		@Override
+		public void introduce() {
+			System.out.println("I am a under graduate student");
+		}
+
+	}
