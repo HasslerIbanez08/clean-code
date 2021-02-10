@@ -15,3 +15,10 @@ Comunicacion
 Socializarce lo mas que se pueda.
 saber hasta donde preguntar.
 hablar para conocer temperamento de las personas.
+
+1. Otras etapas de los proyectos.
+
+2. Propuestas de comunicación entre los departamentos.
+	Comunicarse para ver en que puede facilitar el trabajo de un equipo a otro.
+3. Herramientas que podrían compartirse para una mayor agilidad entre departamentos
+	La ya mencionada jira, me parece una herramienta muy completa.
