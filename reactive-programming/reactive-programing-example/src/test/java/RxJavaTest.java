@@ -2,14 +2,10 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observables.ConnectableObservable;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RxJavaTest {
@@ -109,7 +105,6 @@ public class RxJavaTest {
         Thread.sleep(5000);
         connectableObservable.subscribe((i) -> System.out.println("Second observable second " + i));
         Thread.sleep(5000);
-
     }
 
     @Test
@@ -123,7 +118,6 @@ public class RxJavaTest {
         Thread.sleep(4000);
         connectableObservable.subscribe((i) -> System.out.println(i == 5 ? "User 2 : que no te voy a pagar nada y haz lo que quieras. " : "User 2 : si quieres aca te espero" + i));
         Thread.sleep(2000);
-
     }
 
     private static int start = 1;
@@ -168,6 +162,7 @@ public class RxJavaTest {
         observable.sorted((x,y)-> Integer.compare(x.length(),y.length()))
                 .subscribe(System.out::println);
     }
+
     @Test
     public void containsTest(){
         Observable.range(0,10000)
@@ -182,31 +177,29 @@ public class RxJavaTest {
             exception.printStackTrace();
         }
     }
-    int cantidadEmployees = 0;
+
+    int quantityEmployees = 0;
     @Test
     public  void  testEmployee(){
-        List<Employee> employees = getEmploye();
+        List<Employee> employees = getEmployee();
 
         Observable<Employee> employeeObservable = Observable.defer(()->Observable.fromIterable(employees));
 
         employees.add(new Employee("Employe: "+employees.size() + 1,10*employees.size() + 1,10*employees.size() + 1));
-        employeeObservable.subscribe(employee -> cantidadEmployees++);
+        employeeObservable.subscribe(employee -> quantityEmployees++);
 
-        assertEquals(8,cantidadEmployees);
+        assertEquals(8,quantityEmployees);
         employeeObservable.distinct()
                 .distinct(employee -> employee.getSalary()>30.0)
                 .subscribe((i)-> System.out.println(i));
-
     }
-    private List<Employee> getEmploye(){
+    private List<Employee> getEmployee(){
         List<Employee> employees = new ArrayList<>();
         for (int i=0; i<7;i++
              ) {
             int number = i==0?7:i;
             employees.add(new Employee("Employe: "+number,10*number,10*number));
         }
-
         return employees ;
-
     }
-    }
+}

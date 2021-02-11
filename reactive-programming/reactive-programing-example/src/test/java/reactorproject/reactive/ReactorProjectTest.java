@@ -15,6 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReactorProjectTest {
+
     @Test
     public void simpleStreamProjectReactorTest(){
         List<Integer> elements = new ArrayList<>();
@@ -23,6 +24,7 @@ public class ReactorProjectTest {
             .subscribe(elements::add);
         assertThat(elements).containsExactly(1,2,3,6,4,5);
     }
+
     @Test
     public void simpleStreamProjectReactorTestMono(){
         List<Integer> elements = new ArrayList<>();
@@ -31,6 +33,7 @@ public class ReactorProjectTest {
                 .subscribe(elements::add);
         assertThat(elements).containsExactly(1);
     }
+
     @Test
     public void showInternalFunctionTest(){
         List<Integer> elements = new ArrayList<>();
@@ -66,6 +69,7 @@ public class ReactorProjectTest {
         });
         assertThat(elements).containsExactly(1,2,3,6,4,5);
     }
+
     @Test
     public void mapTest(){
         List<Integer> elements = new ArrayList<>();
@@ -75,6 +79,7 @@ public class ReactorProjectTest {
                 .subscribe(elements::add);
         assertThat(elements).containsExactly(3, 6, 9, 18, 12, 15);
     }
+
     @Test
     public void parallelTest(){
         List<Integer> elements = new ArrayList<>();
@@ -85,6 +90,7 @@ public class ReactorProjectTest {
                 .subscribe(elements::add);
         assertThat(elements).containsExactly(3, 6, 9, 18, 12, 15);
     }
+
     @Test
     public void fluxHotTest(){
         ConnectableFlux<Object> publish = Flux.create(fluxSink -> {
@@ -95,7 +101,6 @@ public class ReactorProjectTest {
         publish.subscribe(System.out::println);
         publish.subscribe(System.out::println);
         publish.log();
-        //publish.connect();
     }
 
 }
