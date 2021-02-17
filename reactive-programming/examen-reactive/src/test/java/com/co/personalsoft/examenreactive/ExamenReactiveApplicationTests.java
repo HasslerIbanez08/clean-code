@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 
 import io.r2dbc.spi.ConnectionFactories;
@@ -39,7 +41,31 @@ class ExamenReactiveApplicationTests {
 		});
 		querysInit.forEach(query -> {
 			Mono.from(connectionFactory.create())
-					.flatMapMany(connectionFactory -> connectionFactory.createStatement(query).execute()).subscribe();
+					.flatMapMany(connectionFactory -> connectionFactory.createStatement(query).execute())
+
+					.subscribe(result -> {
+						result.getRowsUpdated().subscribe(new Subscriber<Integer>() {
+							@Override
+							public void onSubscribe(Subscription s) {
+								s.request(1);
+							}
+
+							@Override
+							public void onNext(Integer integer) {
+								System.out.println("archivo " + integer);
+							}
+
+							@Override
+							public void onError(Throwable t) {
+
+							}
+
+							@Override
+							public void onComplete() {
+								System.out.println("complete");
+							}
+						});
+					});
 		});
 
 	}

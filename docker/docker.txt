@@ -1,0 +1,15 @@
+Docker una herramienta muy interesante. y muy facil de manejar
+
+Es importante controlar los controladores. tanto en CPU y MEMORIA
+
+Saber usar los comandos cuales limitan o configuran la cpu y memoria.
+
+Algunos como :
+cpus y -cpu--sets son muy importantates.
+
+y los memory, para configurar el tema de la memoria.
+
+Es importante que las imagenes sean confiables. ya que con llego se asegura la funcionalidad de los contenedores
+
+tambien es importante que los contenedores no los dejen en la version lates: ya que si hay una actualización a futuro puede dañar la funcionalidad de la app.-
+
