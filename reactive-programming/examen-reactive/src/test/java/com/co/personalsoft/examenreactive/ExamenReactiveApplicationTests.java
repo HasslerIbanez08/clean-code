@@ -67,7 +67,6 @@ class ExamenReactiveApplicationTests {
 						});
 					});
 		});
-
 	}
 
 	@Test
@@ -81,7 +80,7 @@ class ExamenReactiveApplicationTests {
 	}
 
 	@Test
-	public void validCreateCategorysTest() {
+	public void validCreateCategoryTest() {
 		Mono.from(connectionFactory.create())
 				.flatMapMany(connection -> connection
 						.createStatement("SELECT count(name) as countCategorys FROM categorys ").execute())
@@ -121,7 +120,6 @@ class ExamenReactiveApplicationTests {
 						.execute())
 				.flatMap(result -> result.map((row, rowMetadata) -> row.get("name")))
 				.subscribe(name -> assertEquals(nameProductUpdate, name.toString()));
-
 	}
 
 	@Test
@@ -137,7 +135,6 @@ class ExamenReactiveApplicationTests {
 						.execute())
 				.flatMap(result -> result.map((row, rowMetadata) -> row.get("name")))
 				.subscribe(name -> assertEquals(nameProductUpdate, name.toString()));
-
 	}
 
 	@Test
@@ -154,25 +151,22 @@ class ExamenReactiveApplicationTests {
 
 						.execute())
 				.flatMap(result -> result.map((row, rowMetadata) -> row.get("countProduct")))
-				.subscribe(contador -> assertEquals(Integer.parseInt(contador.toString()),quantity-1 ));
-
+				.subscribe(counter -> assertEquals(Integer.parseInt(counter.toString()),quantity-1 ));
 	}
+
 	@Test
 	public void deleteCategoryTest() {
 		Mono.from(connectionFactory.create())
 				.flatMapMany(connection -> connection
 						.createStatement(
-								" delete categorys where id = 2;"
-								).execute())
+								" delete categorys where id = 2;")
+						.execute())
 				.subscribe();
 		Mono.from(connectionFactory.create())
 				.flatMapMany(connectionFactory -> connectionFactory
 						.createStatement("SELECT count(name) as countProduct FROM products ")
-
 						.execute())
 				.flatMap(result -> result.map((row, rowMetadata) -> row.get("countProduct")))
-				.subscribe(contador -> assertEquals(Integer.parseInt(contador.toString()),quantity-1 ));
-
+				.subscribe(counter -> assertEquals(Integer.parseInt(counter.toString()),quantity-1 ));
 	}
-
 }
